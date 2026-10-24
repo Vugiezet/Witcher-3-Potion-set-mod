@@ -691,6 +691,12 @@ class CR4InventoryMenu extends CR4MenuBase
 	
 	event  OnTabChanged(tabIndex:int)
 	{	
+		var selectionPopup : CR4ItemSelectionPopup;
+		selectionPopup = (CR4ItemSelectionPopup)theGame.GetGuiManager().GetPopup( 'ItemSelectionPopup' );
+		if ( selectionPopup && !selectionPopup.IsClosing() )
+		{
+			return false;
+		}
 		currentlySelectedTab = tabIndex;
 
 		
@@ -4600,11 +4606,72 @@ class CR4InventoryMenu extends CR4MenuBase
 		super.DispatchForeignInputEvent( type, keyCode, inputValue, navEquivalent );
 	}
 
+	public function SetPotionSetCommonMenuLocked( locked : bool ) : void
+	{
+		var commonMenu : CR4CommonMenu;
+		var lockNavFunc : CScriptedFlashFunction;
+
+		commonMenu = (CR4CommonMenu)m_parentMenu;
+		if ( !commonMenu )
+		{
+			commonMenu = (CR4CommonMenu)GetRootMenu();
+		}
+		if ( !commonMenu )
+		{
+			commonMenu = (CR4CommonMenu)theGame.GetGuiManager().GetRootMenu();
+		}
+
+		if ( commonMenu )
+		{
+			commonMenu.m_contextInputBlocked = locked;
+			commonMenu.SetMenuNavigationEnabled( !locked );
+			commonMenu.SetLockedInMenu( locked );
+			commonMenu.SetLockedInHub( locked );
+
+			if ( commonMenu.GetMenuFlash() )
+			{
+				lockNavFunc = commonMenu.GetMenuFlash().GetMemberFlashFunction( "lockOpenTabNavigation" );
+				if ( lockNavFunc )
+				{
+					lockNavFunc.InvokeSelfOneArg( FlashArgBool( locked ) );
+				}
+			}
+		}
+
+		if ( thePlayer )
+		{
+			if ( locked )
+			{
+				thePlayer.BlockAction( EIAB_OpenMap, 'ModPotionSet' );
+				thePlayer.BlockAction( EIAB_OpenJournal, 'ModPotionSet' );
+				thePlayer.BlockAction( EIAB_OpenCharacterPanel, 'ModPotionSet' );
+				thePlayer.BlockAction( EIAB_OpenAlchemy, 'ModPotionSet' );
+				thePlayer.BlockAction( EIAB_OpenGlossary, 'ModPotionSet' );
+				thePlayer.BlockAction( EIAB_OpenMeditation, 'ModPotionSet' );
+				thePlayer.BlockAction( EIAB_OpenPreparation, 'ModPotionSet' );
+			}
+			else
+			{
+				thePlayer.UnblockAction( EIAB_OpenMap, 'ModPotionSet' );
+				thePlayer.UnblockAction( EIAB_OpenJournal, 'ModPotionSet' );
+				thePlayer.UnblockAction( EIAB_OpenCharacterPanel, 'ModPotionSet' );
+				thePlayer.UnblockAction( EIAB_OpenAlchemy, 'ModPotionSet' );
+				thePlayer.UnblockAction( EIAB_OpenGlossary, 'ModPotionSet' );
+				thePlayer.UnblockAction( EIAB_OpenMeditation, 'ModPotionSet' );
+				thePlayer.UnblockAction( EIAB_OpenPreparation, 'ModPotionSet' );
+			}
+		}
+	}
+
 	private function CheckPotionSetEscapeInput( NavCode : string, KeyCode : int )
 	{
 		var commonMenu : CR4CommonMenu;
 
 		if ( NavCode == "escape-gamepad_B" || KeyCode == IK_Escape )
+		{
+			SetPotionSetCommonMenuLocked( false );
+			return;
+		}
 		{
 			commonMenu = (CR4CommonMenu)m_parentMenu;
 			if ( !commonMenu )
@@ -4625,6 +4692,7 @@ class CR4InventoryMenu extends CR4MenuBase
 	public function OpenPotionSetMenu() : void
 	{
 		var popupData : W3ItemSelectionPopupData;
+
 		var commonMenu : CR4CommonMenu;
 
 		if ( _currentState != IMS_Player )
@@ -4652,6 +4720,7 @@ class CR4InventoryMenu extends CR4MenuBase
 		popupData.overrideQuestItemRestrictions = true;
 		popupData.invMenuRef = this;
 
+		SetPotionSetCommonMenuLocked( true );
 		OnPlaySoundEvent( "gui_global_panel_open" );
 		theGame.RequestPopup( 'ItemSelectionPopup', popupData );
 	}
@@ -4673,6 +4742,7 @@ class CR4InventoryMenu extends CR4MenuBase
 		}
 		if ( m_currentContext )
 		{
+			SetPotionSetCommonMenuLocked( false );
 			ActivateContext( m_currentContext );
 			m_currentContext.UpdateContext();
 		}

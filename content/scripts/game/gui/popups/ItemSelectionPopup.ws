@@ -165,6 +165,10 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 			m_fxSetCategory.InvokeSelfOneArg( FlashArgString( ModPotionSet_GetHeaderText( m_activeSetIndex ) ) );
 			m_fxShowCategoryButtons.InvokeSelfOneArg( FlashArgBool(true) );
 			m_fxSetItemDescription.InvokeSelfOneArg( FlashArgString( ModPotionSet_GetPopupDescriptionText( GetInvalidUniqueId(), m_activeSetIndex ) ) );
+			if ( m_DataObject && m_DataObject.invMenuRef )
+			{
+				m_DataObject.invMenuRef.SetPotionSetCommonMenuLocked( true );
+			}
 		}
 		else
 		{
@@ -538,6 +542,7 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 	event OnChangeCategory( id : int )
 	{
 		var locString : string;
+		var nowMs : int;
 		var potionSetComp : W3GuiPotionSetSelectComponent;
 	
 		if( m_DataObject.selectionMode == EISPM_RadialMenuSlot1 
@@ -575,7 +580,21 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 		}
 		else if( m_DataObject.selectionMode == EISPM_PotionSet )
 		{
-			m_lastToggleTimeMs = theGame.GetLocalTimeAsMilliseconds();
+			nowMs = theGame.GetLocalTimeAsMilliseconds();
+			if ( Abs( nowMs - m_lastToggleTimeMs ) < 150 )
+			{
+				return true;
+			}
+			m_lastToggleTimeMs = nowMs;
+			if ( id < 0 )
+			{
+				m_activeSetIndex = 1;
+			}
+			else if ( id > 0 )
+			{
+				m_activeSetIndex = 2;
+			}
+			else
 			if ( m_activeSetIndex == 1 )
 			{
 				m_activeSetIndex = 2;
@@ -844,7 +863,11 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 			{
 				TogglePotionItem( m_lastSelectedItemId );
 			}
-			else if ( keyCode == IK_1 || keyCode == IK_3 || keyCode == IK_Pad_LeftShoulder || keyCode == IK_Pad_RightShoulder || navEquivalent == "gamepad_L1" || navEquivalent == "gamepad_R1" )
+			else if ( keyCode == IK_1 || keyCode == IK_Pad_LeftShoulder || navEquivalent == "gamepad_L1" )
+			{
+				OnChangeCategory( -1 );
+			}
+			else if ( keyCode == IK_3 || keyCode == IK_Pad_RightShoulder || navEquivalent == "gamepad_R1" )
 			{
 				OnChangeCategory( 1 );
 			}
@@ -874,7 +897,11 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 		{
 			ClosePopup();
 		}
-		else if ( NavCode == "gamepad_L1" || NavCode == "gamepad_R1" || KeyCode == IK_1 || KeyCode == IK_3 || KeyCode == IK_Pad_LeftShoulder || KeyCode == IK_Pad_RightShoulder )
+		else if ( NavCode == "gamepad_L1" || KeyCode == IK_1 || KeyCode == IK_Pad_LeftShoulder )
+		{
+			OnChangeCategory( -1 );
+		}
+		else if ( NavCode == "gamepad_R1" || KeyCode == IK_3 || KeyCode == IK_Pad_RightShoulder )
 		{
 			OnChangeCategory( 1 );
 		}
