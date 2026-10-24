@@ -30,7 +30,7 @@ W oknie ekwipunku na dolnym pasku znajduje się przycisk `Zestawy eliksirow (Z1:
 Szczegóły obsługi menu:
 * Nagłówek okna informuje, który zestaw jest aktualnie modyfikowany (np. `ZESTAW 1 (3/4)`).
 * Pojedyncze kliknięcie myszą podświetla miksturę, a podwójne dodaje ją do aktywnego zestawu lub usuwa, jeśli już się w nim znajduje.
-* Dolny panel tekstowy pokazuje zawartość obu zestawów (ze wskaźnikiem `->` przy aktywnym zestawie) oraz skróty klawiszowe.
+* Dolny panel tekstowy pokazuje zawartość aktualnego zestawu (każdy eliksir w osobnej linii) oraz skróty klawiszowe.
 * Opisy fabularne oraz statystyki toksyczności zostały wycięte z tego okna, aby lista mikstur pozostała zwarta i czytelna.
 
 ---
@@ -41,10 +41,10 @@ Mod wykorzystuje klawisze przypisane do dobywania mieczy oraz przyciski menu ko�
 
 | Zestaw | Klawiatura | Kontroler (Xbox / PlayStation) | Menu kołowe |
 |---|---|---|---|
-| Zestaw 1 | Szybkie dwukrotne wciśnięcie klawisza `1` (miecz stalowy) | Dwukrotne wciśnięcie lub przytrzymanie `D-Pad Lewo` (~0.3 s) | Przycisk nałożenia oleju stalowego |
-| Zestaw 2 | Szybkie dwukrotne wciśnięcie klawisza `2` (miecz srebrny) | Dwukrotne wciśnięcie lub przytrzymanie `D-Pad Prawo` (~0.3 s) | Przycisk nałożenia oleju srebrnego |
+| Zestaw 1 | Przytrzymanie klawisza `1` (miecz stalowy) | Przytrzymanie `D-Pad Lewo` (~0.3 s) | Przycisk nałożenia oleju stalowego |
+| Zestaw 2 | Przytrzymanie klawisza `2` (miecz srebrny) | Przytrzymanie `D-Pad Prawo` (~0.3 s) | Przycisk nałożenia oleju srebrnego |
 
-Pojedyncze wciśnięcie klawiszy `1` i `2` (oraz kierunków D-Pada) zachowuje swoje standardowe działanie: dobywa lub chowa odpowiedni miecz.
+Wciśnięcie klawiszy `1` i `2` (oraz kierunków D-Pada) zachowuje swoje standardowe działanie: dobywa lub chowa odpowiedni miecz. Aktywacja zestawu eliksirów następuje wyłącznie po przytrzymaniu przycisku.
 
 ---
 

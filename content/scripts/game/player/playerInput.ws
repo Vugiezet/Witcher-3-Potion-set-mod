@@ -1112,14 +1112,14 @@ class CPlayerInput
 	
 	private var processedSteelSwordHold : bool;
 	private var processedSilverSwordHold : bool;
-	private var m_lastSteelSwordPressTime : float;
-	private var m_lastSilverSwordPressTime : float;
+	
+	
 	
 	event OnCommSteelSword( action : SInputAction )
 	{
 		var duringCastSign : bool;
 		var mouserControllerScheme : MouserControllerScheme;
-		var nowTime : float;
+
 		
 		if(IsPressed(action))
 		{
@@ -1133,18 +1133,19 @@ class CPlayerInput
 				}
 				return false;
 			}
-			if ( !theInput.IsActionPressed('Alternate') && !CheckRadialMenu() )
+			/* double click removed
 			{
-				nowTime = theGame.GetEngineTimeAsSeconds();
-				if ( m_lastSteelSwordPressTime > 0.0f && ( nowTime - m_lastSteelSwordPressTime ) <= 0.40f )
+
+
 				{
-					m_lastSteelSwordPressTime = 0.0f;
+
 					processedSteelSwordHold = true;
 					ModPotionSet_DrinkSet( 1 );
 					return true;
 				}
-				m_lastSteelSwordPressTime = nowTime;
+
 			}
+			*/
 			processedSteelSwordHold = false;
 		}
 		
@@ -1153,7 +1154,7 @@ class CPlayerInput
 			return false;
 		}
 		
-		if ( IsReleased(action) || ( IsPressed(action) && (thePlayer.GetCurrentMeleeWeaponType() == PW_None || thePlayer.GetCurrentMeleeWeaponType() == PW_Fists) ) )
+		if ( IsReleased(action) )
 		{
 			if( !processedSteelSwordHold )
 			{
@@ -1176,7 +1177,7 @@ class CPlayerInput
 	{
 		var duringCastSign : bool;
 		var mouserControllerScheme : MouserControllerScheme;
-		var nowTime : float;
+
 		
 		if( IsPressed(action) )
 		{
@@ -1190,18 +1191,19 @@ class CPlayerInput
 				}
 				return false;
 			}
-			if ( !theInput.IsActionPressed('Alternate') && !CheckRadialMenu() )
+			/* double click removed
 			{
-				nowTime = theGame.GetEngineTimeAsSeconds();
-				if ( m_lastSilverSwordPressTime > 0.0f && ( nowTime - m_lastSilverSwordPressTime ) <= 0.40f )
+
+
 				{
-					m_lastSilverSwordPressTime = 0.0f;
+
 					processedSilverSwordHold = true;
 					ModPotionSet_DrinkSet( 2 );
 					return true;
 				}
-				m_lastSilverSwordPressTime = nowTime;
+
 			}
+			*/
 			processedSilverSwordHold = false;
 		}
 		
@@ -1210,7 +1212,7 @@ class CPlayerInput
 			return false;
 		}
 		
-		if ( IsReleased(action) || ( IsPressed(action) && (thePlayer.GetCurrentMeleeWeaponType() == PW_None || thePlayer.GetCurrentMeleeWeaponType() == PW_Fists) ) )
+		if ( IsReleased(action) )
 		{
 			if( !processedSilverSwordHold )
 			{
@@ -1248,7 +1250,7 @@ class CPlayerInput
 				if ( !processedSteelSwordHold )
 				{
 					processedSteelSwordHold = true;
-					m_lastSteelSwordPressTime = 0.0f;
+
 					ModPotionSet_DrinkSet( 1 );
 				}
 				return true;
@@ -1259,7 +1261,7 @@ class CPlayerInput
 				if ( !processedSilverSwordHold )
 				{
 					processedSilverSwordHold = true;
-					m_lastSilverSwordPressTime = 0.0f;
+
 					ModPotionSet_DrinkSet( 2 );
 				}
 				return true;
@@ -1708,20 +1710,20 @@ class CPlayerInput
 		}
 		else if( IsPressed(action) && ( action.aName == 'OilSteel' || action.aName == 'OilSteelKB' ) && !theInput.IsActionPressed('Alternate') )
 		{
-			if( !theInput.LastUsedGamepad() || !processedSteelSwordHold )
+			if( !processedSteelSwordHold )
 			{
 				processedSteelSwordHold = true;
-				m_lastSteelSwordPressTime = 0.0f;
+
 				ModPotionSet_DrinkSet( 1 );
 			}
 			return true;
 		}
 		else if( IsPressed(action) && ( action.aName == 'OilSilver' || action.aName == 'OilSilverKB' ) && !theInput.IsActionPressed('Alternate') )
 		{
-			if( !theInput.LastUsedGamepad() || !processedSilverSwordHold )
+			if( !processedSilverSwordHold )
 			{
 				processedSilverSwordHold = true;
-				m_lastSilverSwordPressTime = 0.0f;
+
 				ModPotionSet_DrinkSet( 2 );
 			}
 			return true;
@@ -3818,7 +3820,28 @@ class CPlayerInput
 			CiriSheatheWeapon();
 		}
 	}
+	/*
+	{
+		var duringCastSign : bool;
 	
+		
+		if ( IsReleased(action) )
+		{
+			if ( thePlayer.GetBIsInputAllowed() && thePlayer.GetBIsCombatActionAllowed()  )
+			{
+				if (thePlayer.GetCurrentMeleeWeaponType() == PW_Steel && !thePlayer.IsThreatened() )
+					thePlayer.OnEquipMeleeWeapon( PW_None, false );
+				else
+					thePlayer.OnEquipMeleeWeapon( PW_Steel, false );
+			}
+		}
+		else if(IsReleased(action) || ( IsPressed(action) && (thePlayer.GetCurrentMeleeWeaponType() == PW_Steel || thePlayer.GetCurrentMeleeWeaponType() == PW_Silver) ) )
+		{
+			CiriSheatheWeapon();
+		}
+	}
+	
+	*/
 	event OnCiriHolsterWeapon( action : SInputAction )
 	{
 		var currWeaponType : EPlayerWeapon;
