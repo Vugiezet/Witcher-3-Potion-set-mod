@@ -1,6 +1,6 @@
 # Witcher 3: Potion Set
 
-Modyfikacja do gry Wiedźmin 3: Dziki Gon (Next-Gen 4.00+), która dodaje możliwość skonfigurowania w ekwipunku dwóch zestawów eliksirów (do 4 mikstur w każdym) i szybkiego ich wypijania w trakcie rozgrywki jednym skrótem klawiszowym, z zachowaniem mechaniki toksyczności.
+Modyfikacja do gry Wiedźmin 3: Dziki Gon Remastered (v5.01), która dodaje możliwość skonfigurowania w ekwipunku dwóch zestawów eliksirów (do 4 mikstur w każdym) i szybkiego ich używania jednym klawiszem.
 
 ---
 
@@ -8,7 +8,7 @@ Modyfikacja do gry Wiedźmin 3: Dziki Gon (Next-Gen 4.00+), która dodaje możli
 
 W podstawowej wersji gry Geralt ma do dyspozycji cztery sloty szybkiego dostępu na eliksiry i jedzenie. Zmiana przygotowanych mikstur podczas walki wymaga pauzowania gry i ręcznego przekładania przedmiotów w ekwipunku. 
 
-Ten mod rozwiązuje ten problem, umożliwiając przygotowanie dwóch gotowych zestawów mikstur (np. Zestaw 1 ofensywny: Grom, Las Mariborski, Puszczyk, Czarna Krew; Zestaw 2 defensywny: Jaskółka, Wilga, Biały Miód, Kot) i zażycie całej kombinacji w trakcie starcia bez otwierania menu.
+Ten mod rozwiązuje ten problem, umożliwiając przygotowanie dwóch gotowych zestawów mikstur (np. Zestaw 1 ofensywny: Grom, Las Mariborski, Puszczyk, Czarna Krew)
 
 ---
 
@@ -51,41 +51,9 @@ Pojedyncze wciśnięcie klawiszy `1` i `2` (oraz kierunków D-Pada) zachowuje sw
 ## Zasady działania i toksyczność
 
 * **Kolejność zażywania:** Mikstury są wypijane dokładnie w takiej kolejności, w jakiej zostały dodane do zestawu (od pozycji #1 do #4).
-* **Ochrona przed przekroczeniem progu toksyczności:** Przed wypiciem każdego kolejnego eliksiru gra sprawdza bieżący poziom zatrucia Geralta oraz jego maksymalną tolerancję. Jeśli kolejna mikstura spowodowałaby przekroczenie limitu toksyczności, sekwencja zostaje przerwana, a gracz otrzymuje powiadomienie na ekranie.
+* **Ochrona przed przekroczeniem progu toksyczności:** Przed wypiciem każdego kolejnego eliksiru gra sprawdza bieżący poziom zatrucia gracza oraz jego maksymalną tolerancję. Jeśli kolejna mikstura spowodowałaby przekroczenie limitu toksyczności, sekwencja zostaje przerwana, a gracz otrzymuje powiadomienie na ekranie.
 * **Brak ładunków:** Mikstury o zerowej liczbie ładunków (0/X) są automatycznie pomijane.
 * **Komunikaty HUD:** Po użyciu zestawu na ekranie pojawia się lista wypitych mikstur (np. `Uzyto Zestawu 1: Grom, Jaskolka, Puszczyk`).
-* **Trwałość konfiguracji:** Skonfigurowane zestawy zapisują się w strukturze pliku zapisu gry (baza GameplayFacts), dzięki czemu nie resetują się po wczytaniu stanu gry ani restarcie aplikacji.
-
----
-
-## Polecenia konsoli
-
-Jeśli w grze włączona jest konsola deweloperska (`~`), można korzystać z następujących poleceń:
-* `potionset_drink1`: natychmiast wypija Zestaw 1.
-* `potionset_drink2`: natychmiast wypija Zestaw 2.
-* `potionset_drink(numer)`: wypija wskazany zestaw (np. `potionset_drink(2)`).
-* `potionset_clear(numer)`: czyści wskazany zestaw (np. `potionset_clear(1)`).
-* `potionset_clear`: czyści oba zestawy jednocześnie.
-
----
-
-## Struktura plików moda
-
-```text
-modPotionSet/
-└── content/
-    └── scripts/
-        ├── local/
-        │   └── modPotionSet.ws                 # Logika zestawów, kontrola toksyczności, formatowanie tekstu menu
-        └── game/
-            ├── gui/
-            │   ├── menus/
-            │   │   └── inventoryMenu.ws        # Otwieranie popupu z poziomu ekwipunku, przekazywanie wejścia
-            │   └── popups/
-            │       └── ItemSelectionPopup.ws   # Obsługa wyboru zestawu (1/3/LB/RB), 2x klik LPM, czyszczenie (R)
-            └── player/
-                └── playerInput.ws              # Wykrywanie podwójnych wciśnięć (klawisze 1 i 2, D-Pad Lewo i Prawo)
-```
 
 ---
 
