@@ -62,18 +62,18 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 	public var m_isClosing					: bool;
 	default m_isClosing = false;
 
-	public function IsClosing() : bool
+	public function IsClosing() : bool { return m_isClosing; } /*
 	{
 		return m_isClosing;
 	}
 
-	public function ClosePopup()
+
 	{
-		m_isClosing = true;
-		super.ClosePopup();
+
+
 	}
 	
-	var m_potionInv, m_mutagenInv, m_edibleInv : W3GuiSelectItemComponent;
+	*/ var m_potionInv, m_mutagenInv, m_edibleInv : W3GuiSelectItemComponent;
 	var forbiddenTags, forbiddenTagsPotion, tagsP, tagsM, tagsE : array<name>;
 	
 	
@@ -436,8 +436,9 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 	
 	event  OnClosingPopup()
 	{
-		m_isClosing = true;
 
+
+		m_isClosing = true;
 		if ( m_DataObject && m_DataObject.selectionMode != EISPM_PotionSet )
 		{
 			theGame.Unpause("ItemSelectionPopup");

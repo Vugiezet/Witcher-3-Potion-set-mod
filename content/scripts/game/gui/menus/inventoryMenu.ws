@@ -3897,7 +3897,8 @@ class CR4InventoryMenu extends CR4MenuBase
 		var selectionPopup : CR4ItemSelectionPopup;
 
 		selectionPopup = (CR4ItemSelectionPopup)theGame.GetGuiManager().GetPopup( 'ItemSelectionPopup' );
-		if ( selectionPopup )
+		CheckPotionSetEscapeInput( NavCode, KeyCode );
+		if ( selectionPopup && !selectionPopup.IsClosing() )
 		{
 			selectionPopup.HandleMenuInput( NavCode, KeyCode, ActionId );
 			return true;
@@ -4599,7 +4600,7 @@ class CR4InventoryMenu extends CR4MenuBase
 		super.DispatchForeignInputEvent( type, keyCode, inputValue, navEquivalent );
 	}
 
-	event OnInputHandled( NavCode : string, KeyCode : int, ActionId : int )
+	private function CheckPotionSetEscapeInput( NavCode : string, KeyCode : int )
 	{
 		var commonMenu : CR4CommonMenu;
 
@@ -4618,7 +4619,7 @@ class CR4InventoryMenu extends CR4MenuBase
 			}
 		}
 
-		super.OnInputHandled( NavCode, KeyCode, ActionId );
+		// Handled escape failsafe
 	}
 
 	public function OpenPotionSetMenu() : void
