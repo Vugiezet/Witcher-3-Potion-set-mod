@@ -30,7 +30,7 @@ W oknie ekwipunku na dolnym pasku znajduje się przycisk `Zestawy eliksirow (Z1:
 Szczegóły obsługi menu:
 * Nagłówek okna informuje, który zestaw jest aktualnie modyfikowany (np. `ZESTAW 1 (3/4)`).
 * Pojedyncze kliknięcie myszą podświetla miksturę, a podwójne dodaje ją do aktywnego zestawu lub usuwa, jeśli już się w nim znajduje.
-* Dolny panel tekstowy pokazuje zawartość aktualnego zestawu (każdy eliksir w osobnej linii) oraz skróty klawiszowe.
+* Dolny panel tekstowy pokazuje zawartość aktualnego zestawu (każdy eliksir w osobnej linii).
 * Opisy fabularne oraz statystyki toksyczności zostały wycięte z tego okna, aby lista mikstur pozostała zwarta i czytelna.
 
 ---

@@ -344,8 +344,8 @@ function ModPotionSet_GetPopupDescriptionText( selectedItemId : SItemUniqueId, o
 {
 	var inv : CInventoryComponent;
 	var currentItems : array<SItemUniqueId>;
-	var i, slotIdx, ammo, nextSlot : int;
-	var potName, lineItem, lineNav, resultText, nl : string;
+	var i, ammo : int;
+	var potName, resultText, nl : string;
 
 	if ( activeSetIdx <= 0 )
 	{
@@ -386,34 +386,8 @@ function ModPotionSet_GetPopupDescriptionText( selectedItemId : SItemUniqueId, o
 		}
 	}
 
-	if ( inv.IsIdValid( selectedItemId ) )
-	{
-		slotIdx = ModPotionSet_GetPotionSlotIndex( selectedItemId, activeSetIdx );
-		if ( slotIdx > 0 )
-		{
-			lineItem = "[W ZESTAWIE " + activeSetIdx + ": #" + slotIdx + "]  2x LPM / E: Usun z Zestawu " + activeSetIdx;
-		}
-		else
-		{
-			if ( currentItems.Size() >= 4 )
-			{
-				lineItem = "[ZESTAW " + activeSetIdx + " PELNY (4/4)]  Wybierz eliksir z zestawu, aby zwolnic miejsce";
-			}
-			else
-			{
-				nextSlot = currentItems.Size() + 1;
-				lineItem = "[POZYCJA: #" + nextSlot + " w Zestawie " + activeSetIdx + "]  2x LPM / E: Dodaj do Zestawu " + activeSetIdx;
-			}
-		}
-	}
 
-	lineNav = "Nawigacja: 1 / 3 (LB / RB) - zmien zestaw  •  2x LPM / E - dodaj/usun  •  R - wyczysc  •  Esc - wyjdz";
 
-	if ( StrLen( lineItem ) > 0 )
-	{
-		resultText += nl + nl + lineItem;
-	}
-	resultText += nl + lineNav;
 
 	return resultText;
 }
@@ -422,7 +396,7 @@ function ModPotionSet_GetPopupDescriptionText( selectedItemId : SItemUniqueId, o
 {
 	var inv : CInventoryComponent;
 	var set1Items, set2Items : array<SItemUniqueId>;
-	var i, slotIdx, ammo, nextSlot : int;
+	var i, ammo : int;
 	var potName, lineSet1, lineSet2, lineItem, lineNav, resultText, nl : string;
 
 	if ( activeSetIdx <= 0 )
