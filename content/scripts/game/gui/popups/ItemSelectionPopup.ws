@@ -62,18 +62,8 @@ class CR4ItemSelectionPopup extends CR4PopupBase
 	public var m_isClosing					: bool;
 	default m_isClosing = false;
 
-	public function IsClosing() : bool { return m_isClosing; } /*
-	{
-		return m_isClosing;
-	}
-
-
-	{
-
-
-	}
-	
-	*/ var m_potionInv, m_mutagenInv, m_edibleInv : W3GuiSelectItemComponent;
+	public function IsClosing() : bool { return m_isClosing; }
+	var m_potionInv, m_mutagenInv, m_edibleInv : W3GuiSelectItemComponent;
 	var forbiddenTags, forbiddenTagsPotion, tagsP, tagsM, tagsE : array<name>;
 	
 	

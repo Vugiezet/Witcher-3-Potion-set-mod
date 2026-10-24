@@ -4619,7 +4619,7 @@ class CR4InventoryMenu extends CR4MenuBase
 			}
 		}
 
-		// Handled escape failsafe
+
 	}
 
 	public function OpenPotionSetMenu() : void

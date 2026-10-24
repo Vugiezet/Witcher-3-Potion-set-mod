@@ -1,14 +1,14 @@
 # Witcher 3: Potion Set
 
-Modyfikacja do gry Wiedźmin 3: Dziki Gon Remastered (v5.01), która dodaje możliwość skonfigurowania w ekwipunku dwóch zestawów eliksirów (do 4 mikstur w każdym) i szybkiego ich używania jednym klawiszem.
+Mod do gry Wiedźmin 3: Dziki Gon (Next-Gen v5.01). Pozwala skonfigurować w ekwipunku dwa zestawy mikstur (do 4 eliksirów w każdym) i wypijać je w trakcie walki jednym przytrzymaniem klawisza.
 
 ---
 
-## Cel moda
+## Jak to działa
 
-W podstawowej wersji gry Geralt ma do dyspozycji cztery sloty szybkiego dostępu na eliksiry i jedzenie. Zmiana przygotowanych mikstur podczas walki wymaga pauzowania gry i ręcznego przekładania przedmiotów w ekwipunku. 
+W podstawowej wersji gry Geralt ma do dyspozycji cztery sloty szybkiego dostępu na eliksiry i jedzenie. Zmiana mikstur podczas walki wymaga otwierania ekwipunku i ręcznego przekładania przedmiotów.
 
-Ten mod rozwiązuje ten problem, umożliwiając przygotowanie dwóch gotowych zestawów mikstur (np. Zestaw 1 ofensywny: Grom, Las Mariborski, Puszczyk, Czarna Krew)
+Mod pozwala przygotować dwa gotowe zestawy (np. Zestaw 1 ofensywny: Grom, Las Mariborski, Puszczyk, Czarna Krew) i zażywać je bezpośrednio podczas starcia.
 
 ---
 
@@ -29,39 +29,39 @@ W oknie ekwipunku na dolnym pasku znajduje się przycisk `Zestawy eliksirow (Z1:
 
 Szczegóły obsługi menu:
 * Nagłówek okna informuje, który zestaw jest aktualnie modyfikowany (np. `ZESTAW 1 (3/4)`).
-* Pojedyncze kliknięcie myszą podświetla miksturę, a podwójne dodaje ją do aktywnego zestawu lub usuwa, jeśli już się w nim znajduje.
-* Dolny panel tekstowy pokazuje zawartość aktualnego zestawu (każdy eliksir w osobnej linii).
-* Opisy fabularne oraz statystyki toksyczności zostały wycięte z tego okna, aby lista mikstur pozostała zwarta i czytelna.
+* Pojedyncze kliknięcie myszą podświetla eliksir, a podwójne dodaje go do aktywnego zestawu lub usuwa, jeśli już się w nim znajduje.
+* Dolny panel tekstowy pokazuje zawartość aktualnie edytowanego zestawu (każdy eliksir w osobnej linii z bieżącą liczbą ładunków).
+* Długie opisy fabularne i zbędne statystyki zostały ukryte w tym oknie, aby lista mikstur pozostała zwarta i czytelna.
 
 ---
 
 ### 2. Wypijanie zestawu podczas gry
 
-Mod wykorzystuje klawisze przypisane do dobywania mieczy oraz przyciski menu kołowego:
+Mod wykorzystuje klawisze dobywania mieczy oraz akcje menu kołowego:
 
 | Zestaw | Klawiatura | Kontroler (Xbox / PlayStation) | Menu kołowe |
 |---|---|---|---|
 | Zestaw 1 | Przytrzymanie klawisza `1` (miecz stalowy) | Przytrzymanie `D-Pad Lewo` (~0.3 s) | Przycisk nałożenia oleju stalowego |
 | Zestaw 2 | Przytrzymanie klawisza `2` (miecz srebrny) | Przytrzymanie `D-Pad Prawo` (~0.3 s) | Przycisk nałożenia oleju srebrnego |
 
-Wciśnięcie klawiszy `1` i `2` (oraz kierunków D-Pada) zachowuje swoje standardowe działanie: dobywa lub chowa odpowiedni miecz. Aktywacja zestawu eliksirów następuje wyłącznie po przytrzymaniu przycisku.
+Krótkie naciśnięcie klawiszy `1` i `2` (oraz kierunków D-Pada) zachowuje domyślne działanie — dobywa lub chowa odpowiedni miecz. Zażycie zestawu następuje wyłącznie po przytrzymaniu przycisku.
 
 ---
 
-## Zasady działania i toksyczność
+## Toksyczność i mechanika
 
-* **Kolejność zażywania:** Mikstury są wypijane dokładnie w takiej kolejności, w jakiej zostały dodane do zestawu (od pozycji #1 do #4).
-* **Ochrona przed przekroczeniem progu toksyczności:** Przed wypiciem każdego kolejnego eliksiru gra sprawdza bieżący poziom zatrucia gracza oraz jego maksymalną tolerancję. Jeśli kolejna mikstura spowodowałaby przekroczenie limitu toksyczności, sekwencja zostaje przerwana, a gracz otrzymuje powiadomienie na ekranie.
-* **Brak ładunków:** Mikstury o zerowej liczbie ładunków (0/X) są automatycznie pomijane.
-* **Komunikaty HUD:** Po użyciu zestawu na ekranie pojawia się lista wypitych mikstur (np. `Uzyto Zestawu 1: Grom, Jaskolka, Puszczyk`).
+* **Kolejność:** Eliksiry są wypijane w kolejności przypisania do zestawu (od pozycji #1 do #4).
+* **Kontrola toksyczności:** Przed zażyciem każdego kolejnego eliksiru gra sprawdza bieżący poziom zatrucia i maksymalną tolerancję Geralta. Jeśli kolejna mikstura przekroczyłaby bezpieczny limit, sekwencja zostaje przerwana, a na ekranie pojawia się ostrzeżenie.
+* **Puste mikstury:** Eliksiry z zerową liczbą ładunków (0/X) są automatycznie pomijane.
+* **Komunikaty HUD:** Po użyciu zestawu na ekranie pojawia się lista zażytych mikstur (np. `Uzyto Zestawu 1: Grom, Jaskolka, Puszczyk`).
 
 ---
 
 ## Instalacja
 
-1. Umieść folder `modPotionSet` w katalogu `Mods` w głównym folderze gry:
+1. Skopiuj folder `modPotionSet` do katalogu `Mods` w głównym folderze gry:
    ```text
    The Witcher 3 Wild Hunt/Mods/modPotionSet
    ```
-2. Jeśli używasz innych modyfikacji wpływających na skrypty interfejsu lub sterowania gracza (`inventoryMenu.ws`, `playerInput.ws`), połącz skrypty za pomocą narzędzia Script Merger.
+2. Jeśli używasz innych modyfikacji zmieniających skrypty interfejsu lub sterowania (`inventoryMenu.ws`, `playerInput.ws`), połącz je programem Script Merger.
 3. Uruchom grę.

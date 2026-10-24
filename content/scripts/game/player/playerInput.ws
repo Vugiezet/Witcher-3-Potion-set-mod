@@ -1133,19 +1133,6 @@ class CPlayerInput
 				}
 				return false;
 			}
-			/* double click removed
-			{
-
-
-				{
-
-					processedSteelSwordHold = true;
-					ModPotionSet_DrinkSet( 1 );
-					return true;
-				}
-
-			}
-			*/
 			processedSteelSwordHold = false;
 		}
 		
@@ -1191,19 +1178,6 @@ class CPlayerInput
 				}
 				return false;
 			}
-			/* double click removed
-			{
-
-
-				{
-
-					processedSilverSwordHold = true;
-					ModPotionSet_DrinkSet( 2 );
-					return true;
-				}
-
-			}
-			*/
 			processedSilverSwordHold = false;
 		}
 		
