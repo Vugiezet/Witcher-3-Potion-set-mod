@@ -20,7 +20,7 @@ W oknie ekwipunku na dolnym pasku znajduje się przycisk `Zestawy eliksirow (Z1:
 
 | Akcja | Klawiatura i mysz | Kontroler (Xbox / PlayStation) |
 |---|---|---|
-| Otwarcie menu zestawów | Klawisz `T` | Przycisk `LT` / `L2` |
+| Otwarcie menu zestawów | Klawisz `T` | Przycisk `L3` / `LS` lub `LT` / `L2` |
 | Przełączanie zestawu (1 / 2) | Klawisze `1` lub `3` (przyciski na górnym pasku) | Przyciski `LB` / `RB` |
 | Dodanie lub usunięcie eliksiru | Podwójne kliknięcie LPM lub klawisz `E` / `Enter` / `Spacja` | Przycisk `A` (Xbox) / `X` (PS) |
 | Wyczyszczenie edytowanego zestawu | Klawisz `R` | Przycisk `X` (Xbox) / `Kwadrat` (PS) |

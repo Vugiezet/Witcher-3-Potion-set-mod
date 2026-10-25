@@ -127,6 +127,13 @@ class  W3InventoryItemContext extends W3UIContext
 			isItemValid = true;
 		}
 		
+		if (keyName == "gamepad_L3" && invMenuRef && invMenuRef.GetCurrentInventoryState() == IMS_Player)
+		{
+			super.HandleUserFeedback(keyName);
+			invMenuRef.OpenPotionSetMenu();
+			return;
+		}
+		
 		if (keyName == "gamepad_L2" && invMenuRef && invMenuRef.GetCurrentInventoryState() == IMS_Player)
 		{
 			if (!isItemValid)
@@ -445,14 +452,14 @@ class W3InventoryGridContext extends W3InventoryItemContext
 				buttonLabel = GetHoldLabel() + " " + GetLocStringByKeyExt("panel_common_compare");
 				AddInputBinding(buttonLabel, "gamepad_L2", -1, true, true, true);
 			}
-			else if (currentInventoryState == IMS_Player)
+			if (false)
 			{
-				AddInputBinding(ModPotionSet_GetInventoryButtonLabel(), "gamepad_L2", IK_T, true, true);
+				// Handled unconditionally below
 			}
 		}
-		else if (currentInventoryState == IMS_Player)
+		if (currentInventoryState == IMS_Player)
 		{
-			AddInputBinding(ModPotionSet_GetInventoryButtonLabel(), "gamepad_L2", IK_T, true, true);
+			AddInputBinding(ModPotionSet_GetInventoryButtonLabel(), "gamepad_L3", IK_T, true, true);
 		}
 		
 		m_managerRef.updateInputFeedback();
@@ -708,7 +715,7 @@ class W3InventoryPaperdollContext extends W3InventoryItemContext
 		
 		if ( currentInventoryState == IMS_Player )
 		{
-			AddInputBinding( ModPotionSet_GetInventoryButtonLabel(), "gamepad_L2", IK_T, true, true );
+			AddInputBinding( ModPotionSet_GetInventoryButtonLabel(), "gamepad_L3", IK_T, true, true );
 		}
 		
 		m_managerRef.updateInputFeedback();
@@ -718,7 +725,7 @@ class W3InventoryPaperdollContext extends W3InventoryItemContext
 	{
 		var isSwitchPlatform : bool = theGame.GetPlatform() == Platform_Switch2_Ounce;
 
-		if ( keyName == "gamepad_L2" && invMenuRef && invMenuRef.GetCurrentInventoryState() == IMS_Player )
+		if ( ( keyName == "gamepad_L3" || keyName == "gamepad_L2" ) && invMenuRef && invMenuRef.GetCurrentInventoryState() == IMS_Player )
 		{
 			super.HandleUserFeedback( keyName );
 			invMenuRef.OpenPotionSetMenu();
@@ -778,7 +785,7 @@ class W3PlayerStatsContext extends W3UIContext
 		m_contextBindings.Clear();
 		if (invMenuRef && invMenuRef.GetCurrentInventoryState() == IMS_Player)
 		{
-			AddInputBinding(ModPotionSet_GetInventoryButtonLabel(), "gamepad_L2", IK_T, true, true);
+			AddInputBinding(ModPotionSet_GetInventoryButtonLabel(), "gamepad_L3", IK_T, true, true);
 		}
 		m_managerRef.updateInputFeedback();
 		invMenuRef.ShowStatTooltip(statName);
@@ -786,6 +793,13 @@ class W3PlayerStatsContext extends W3UIContext
 
 	public function HandleUserFeedback(keyName:string):void
 	{
+		if (keyName == "gamepad_L3" && invMenuRef && invMenuRef.GetCurrentInventoryState() == IMS_Player)
+		{
+			super.HandleUserFeedback(keyName);
+			invMenuRef.OpenPotionSetMenu();
+			return;
+		}
+		
 		if (keyName == "gamepad_L2" && invMenuRef && invMenuRef.GetCurrentInventoryState() == IMS_Player)
 		{
 			super.HandleUserFeedback(keyName);

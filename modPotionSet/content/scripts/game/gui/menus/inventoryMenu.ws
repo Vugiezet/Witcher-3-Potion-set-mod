@@ -3904,6 +3904,11 @@ class CR4InventoryMenu extends CR4MenuBase
 
 		selectionPopup = (CR4ItemSelectionPopup)theGame.GetGuiManager().GetPopup( 'ItemSelectionPopup' );
 		CheckPotionSetEscapeInput( NavCode, KeyCode );
+		if ( KeyCode == IK_T && _currentState == IMS_Player && !selectionPopup )
+		{
+			OpenPotionSetMenu();
+			return true;
+		}
 		if ( selectionPopup && !selectionPopup.IsClosing() )
 		{
 			selectionPopup.HandleMenuInput( NavCode, KeyCode, ActionId );
